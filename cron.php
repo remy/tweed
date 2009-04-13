@@ -105,10 +105,10 @@ if (count($json)) {
 
     // go through each plugin specified in the config and apply it if it exists
     foreach ($config['plugins'] as $plugin) {
-        if (file_exists('plugins/' . $plugin . '.php')) {
+        if (file_exists($path . '/plugins/' . $plugin . '.php')) {
             // dynamically construct the new object, and pass each tweet to the 'run' method
             // updating the list of tweets as each plugin is processed.
-            $plugin_fn = create_function('$tweets, $config', 'include("plugins/' . $plugin . '.php"); $plugin = new ' . $plugin . '($config); $filtered_tweets = array(); foreach ($tweets as $tweet) { $filtered_tweet = $plugin->run($tweet); if ($filtered_tweet !== false) { $filtered_tweets[] = $filtered_tweet; } }; return $filtered_tweets;');
+            $plugin_fn = create_function('$tweets, $config', 'include(' . $path . '"/plugins/' . $plugin . '.php"); $plugin = new ' . $plugin . '($config); $filtered_tweets = array(); foreach ($tweets as $tweet) { $filtered_tweet = $plugin->run($tweet); if ($filtered_tweet !== false) { $filtered_tweets[] = $filtered_tweet; } }; return $filtered_tweets;');
             $json = $plugin_fn($json, $config);
         }
     }   
