@@ -1,7 +1,7 @@
 <?php
 class strip_reply {
     function run($tweet) {
-        if (stripos($tweet->text, '@') == 0) {
+        if (strpos($tweet->text, '@') == 0) {
             $tweet->text = preg_replace('/^@[\d\w\-]+\s+/', '', $tweet->text);
         } 
         
