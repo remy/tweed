@@ -1,8 +1,9 @@
 <?php
-include_once('lib/spyc.php');
+$path = pathinfo(__FILE__, PATHINFO_DIRNAME);
+include_once($path . '/lib/spyc.php');
 
 if( !function_exists('json_decode') ) {
-    include_once("lib/JSON.php");
+    include_once($path . '/lib/JSON.php');
     function json_decode($data) {
         $json = new Services_JSON();
         return( $json->decode($data) );
@@ -89,7 +90,7 @@ function update_config($config) {
 }
 
 
-$config = Spyc::YAMLLoad('config.yaml');
+$config = Spyc::YAMLLoad($path . '/config.yaml');
 if ($config['debug']) {
     $debug = $config['debug'];
 }
