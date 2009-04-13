@@ -18,7 +18,7 @@ class db_store {
             if ($this->db) {
                 if (mysql_select_db($config['database']['database'], $this->db)) {
                     $this->connected = true;
-                    self::setup();
+                    $this->setup();
                 } else {
                     user_error("Could not connect to database");
                 }
