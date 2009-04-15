@@ -5,7 +5,7 @@ class linkify {
     function linkify() {
         // note - this order is important, i.e. links at the top, then anything else
         $this->matches = array(
-            '/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/',
+            '(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/)',
             '/(^|[^\w])(#[\d\w\-]+)/',
             '/(^|[^\w])(@([\d\w\-]+))/'
         );
