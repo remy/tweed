@@ -13,7 +13,7 @@ class db_store {
         
         if ($config != null) {
             $this->config = $config;
-            $this->db = mysql_pconnect($config['database']['host'], $config['database']['user'], $config['database']['password']);
+            $this->db = mysql_connect($config['database']['host'], $config['database']['user'], $config['database']['password']);
             
             if ($this->db) {
                 if (mysql_select_db($config['database']['database'], $this->db)) {
