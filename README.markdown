@@ -20,7 +20,7 @@ For the tweet to cascade to the next plugin, you must return the tweet, otherwis
 
 ### Example plugin
 
-`&lt;?php
+<pre><code>&lt;?php
 class dump {
   // tweet is the full single object that returns from a JSON hit to the search API
   function run($tweet) {
@@ -30,14 +30,14 @@ class dump {
     return $tweet;
   }
 }
-?&gt;`
+?&gt;</code></pre>
 
-## Configuration where fopen can't be accessed from cron
+<h2>Configuration where fopen can't be accessed from cron</h2>
 
-You need to set up a cronjob that does a URL hit rather than running from the command line.  You should still protect the directory from reading via the .htaccess file, but you'll need to allow entry to the cron.php file:
+<p>You need to set up a cronjob that does a URL hit rather than running from the command line.  You should still protect the directory from reading via the .htaccess file, but you'll need to allow entry to the cron.php file:</p>
 
-deny from all
-<Files cron.php>
+<pre><code>deny from all
+&lt;Files cron.php&gt;
 order allow,deny
 allow from all
-</Files>
+&lt;/Files&gt;</code></pre>
