@@ -20,7 +20,7 @@ For the tweet to cascade to the next plugin, you must return the tweet, otherwis
 
 ### Example plugin
 
-<pre><code>&lt;?php
+`&lt;?php
 class dump {
   // tweet is the full single object that returns from a JSON hit to the search API
   function run($tweet) {
@@ -30,7 +30,7 @@ class dump {
     return $tweet;
   }
 }
-?&gt;</code></pre>
+?&gt;`
 
 ## Configuration where fopen can't be accessed from cron
 
