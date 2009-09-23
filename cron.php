@@ -90,8 +90,12 @@ function update_config($config, $filename) {
     }
 }
 
-
 $config_file = $path . '/config.yaml';
+
+if (count($argv) > 1 && file_exists($argv[1])) {
+  $config_file = $argv[1];
+}
+
 $config = Spyc::YAMLLoad($config_file);
 if ($config['debug']) {
     $debug = $config['debug'];
