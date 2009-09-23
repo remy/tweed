@@ -15,6 +15,10 @@ class db_store {
             $this->config = $config;
             $this->db = mysql_connect($config['database']['host'], $config['database']['user'], $config['database']['password']);
             
+            if ($config['database']['table']) {
+              $this->table = $config['database']['table'];
+            }
+            
             if ($this->db) {
                 if (mysql_select_db($config['database']['database'], $this->db)) {
                     $this->connected = true;
@@ -55,7 +59,7 @@ class db_store {
     
     function run($tweet) {
         if (($this->initialised && $this->connected) || $this->config['debug']) {
-            $sql = sprintf('insert into tweets (id, avatar, name, screen_name, message, createdDate) values (%d, "%s", "%s", "%s", "%s", "%s")', $tweet->id, mysql_escape_string($tweet->profile_image_url), mysql_escape_string($tweet->from_user), mysql_escape_string($tweet->from_user), mysql_escape_string($tweet->text), date('c', $tweet->created_at));
+            $sql = sprintf('insert into ' . $this->table . ' (id, avatar, name, screen_name, message, createdDate) values (%d, "%s", "%s", "%s", "%s", "%s")', $tweet->id, mysql_escape_string($tweet->profile_image_url), mysql_escape_string($tweet->from_user), mysql_escape_string($tweet->from_user), mysql_escape_string($tweet->text), date('c', $tweet->created_at));
             
             if ($this->config['debug']) {
                 echo $sql . ";\n";
